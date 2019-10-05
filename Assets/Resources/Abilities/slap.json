@@ -1,0 +1,15 @@
+{
+    "id": "slap",
+    "title": "Slap",
+    "description": "A weak, open-palmed attack",
+    "damageTypes": [
+        "Physical",
+        "Melee"
+    ],
+    "manaCost": 0,
+    "energyCost": 1,
+    "damage": 2,
+    "piercing": 0,
+    "offense": 1,
+    "critPower": 1
+}

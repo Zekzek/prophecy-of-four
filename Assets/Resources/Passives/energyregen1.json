@@ -1,0 +1,7 @@
+{
+    "type": "energyregen",
+    "level": 1,
+    "changePerTick": 1,
+    "percentChangePerTick": 0.02,
+    "tickPeriod": 3
+}

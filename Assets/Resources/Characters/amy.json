@@ -1,0 +1,73 @@
+{
+    "id": "amy",
+    "templateId": "template_stranger",
+    "displayName": "Amy",
+    "position": {
+        "x": 10.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "resources": [
+        {
+            "type": "health",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        },
+        {
+            "type": "shield",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        },
+        {
+            "type": "mana",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        },
+        {
+            "type": "energy",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        }
+    ],
+    "stats": [
+        {
+            "type": "damageMod",
+            "tags": [
+                "physical"
+            ],
+            "value": 0.2
+        },
+        {
+            "type": "damageResist",
+            "tags": [
+                "physical"
+            ],
+            "value": 0.2
+        }
+    ],
+    "passives": [
+        "shieldregen1",
+        "manaregen1"
+    ],
+    "relationships": [
+        {
+            "characterId": "bob",
+            "feelings": [
+                {
+                    "type": "love",
+                    "value": 5,
+                    "recent": 0
+                },
+                {
+                    "type": "lust",
+                    "value": 50,
+                    "recent": 100
+                }
+            ]
+        }
+    ]
+}

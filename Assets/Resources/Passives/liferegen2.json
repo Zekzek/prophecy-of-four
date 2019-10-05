@@ -1,0 +1,7 @@
+{
+    "type": "liferegen",
+    "level": 2,
+    "changePerTick": 2,
+    "percentChangePerTick": 0.05,
+    "tickPeriod": 3
+}

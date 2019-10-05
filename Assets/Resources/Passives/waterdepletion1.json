@@ -1,0 +1,7 @@
+{
+    "type": "waterdepletion",
+    "level": 1,
+    "changePerTick": -2,
+    "percentChangePerTick": 0.0,
+    "tickPeriod": 3
+}

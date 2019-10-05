@@ -1,0 +1,57 @@
+{
+    "id": "template_stranger",
+    "displayName": "Stranger",
+    "resources": [
+        {
+            "type": "health",
+            "min": 0,
+            "max": 50,
+            "current": 50
+        },
+        {
+            "type": "shield",
+            "min": 0,
+            "max": 0,
+            "current": 0
+        },
+        {
+            "type": "mana",
+            "min": 0,
+            "max": 0,
+            "current": 0
+        },
+        {
+            "type": "energy",
+            "min": 0,
+            "max": 50,
+            "current": 50
+        },
+        {
+            "type": "food",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        },
+        {
+            "type": "water",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        },
+        {
+            "type": "air",
+            "min": 0,
+            "max": 100,
+            "current": 50
+        }
+    ],
+    "stats": [],
+    "passives": [
+        "liferegen1",
+        "energyregen1",
+        "fooddepletion1",
+        "waterdepletion1",
+        "airdepletion1"
+    ],
+    "relationships": []
+}
