@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UtiliZek;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicBehaviour : MonoBehaviour
@@ -18,7 +19,7 @@ public class MusicBehaviour : MonoBehaviour
     public void Start()
     {
         source = GetComponent<AudioSource>();
-        song = Util.GetSongData(songID);
+        song = FileManager.GetSongData(songID);
         song.Init();
         chords = song.Chords;
     }

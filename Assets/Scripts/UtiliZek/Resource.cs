@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace UtiliZek
@@ -8,13 +6,13 @@ namespace UtiliZek
     [Serializable]
     public class Resource
     {
-        public delegate void OnChangeCallback();
+        public string Type { get; set; }
 
-        public OnChangeCallback OnFull;
-        public OnChangeCallback OnEmpty;
-        public OnChangeCallback OnChange;
-        public OnChangeCallback OnMore;
-        public OnChangeCallback OnLess;
+        public Action<float> OnFull;
+        public Action<float> OnEmpty;
+        public Action<float, float> OnChange;
+        public Action<float, float> OnMore;
+        public Action<float, float> OnLess;
 
         [SerializeField]
         private float current;
@@ -22,56 +20,53 @@ namespace UtiliZek
         private float max = 100;
         private float min = 0;
 
-        public float Current { get { return current; } }
-        public float Max { get { return max; } }
-        public bool Full { get; private set; }
-        public bool Empty { get; private set; }
+        public float Current { get { return current; } set { Change(value - current); } }
+        public float Max { get { return max; } set { max = value; Init(); } }
+        public float Min { get { return min; } set { min = value; Init(); } }
+        public bool IsFull { get { return Utilizek.CloseEnough(current, max); } }
+        public bool IsEmpty { get { return Utilizek.CloseEnough(current, min); } }
 
         public void Init()
         {
-            if (current >= max)
-            {
-                current = max;
-                Full = true;
-            }
-            if (current <= min)
-            {
-                current = min;
-                Empty = true;
-            }
+            current = Mathf.Clamp(current, min, max);
         }
 
         public void Change(float amount)
         {
-            current = Mathf.Clamp(current + amount, 0, max);
-            Empty = false;
+            float updatedAmount = Mathf.Clamp(current + amount, min, max);
 
-            if (!Full && amount > 0)
+            if (Utilizek.CloseEnough(updatedAmount, amount))
+            {
+                // Nothing changed
+                return;
+            }
+
+            current = updatedAmount;
+            float percent = OnChange != null || OnMore != null || OnLess != null ? (current - min) / (max - min) : 0;
+
+            if (OnChange != null)
+                OnChange(current, percent);
+
+            if (amount > 0)
             {
                 if (OnMore != null)
-                    OnMore();
-                if (OnChange != null)
-                    OnChange();
-                if (current >= max)
+                    OnMore(current, percent);
+                if (Utilizek.CloseEnough(current, max))
                 {
                     current = max;
-                    Full = true;
                     if (OnFull != null)
-                        OnFull();
+                        OnFull(current);
                 }
             }
-            else if (!Empty && amount < 0)
+            else
             {
                 if (OnLess != null)
-                    OnLess();
-                if (OnChange != null)
-                    OnChange();
-                if (current <= min)
+                    OnLess(current, percent);
+                if (Utilizek.CloseEnough(current, min))
                 {
                     current = min;
-                    Empty = true;
                     if (OnEmpty != null)
-                        OnEmpty();
+                        OnEmpty(current);
                 }
             }
         }

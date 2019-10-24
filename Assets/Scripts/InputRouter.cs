@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ public class InputRouter : MonoBehaviour
             UpdateInputValue(inputAxis);
 
         if (IsFirstDown(InputAxis.Jump))
-            characterController.UseAttack(Util.GetAbilityData("slap"), testAttacker, testDefender);
+            characterController.UseAttack(FileManager.GetAbilityData("slap"), testAttacker, testDefender);
         //if (testAttacker.Thirst != SurvivalResource.Satiation.Content)
         //    testAttacker.AddResource(Resource.ResourceType.Water, testWaterFountain.Draw());
 

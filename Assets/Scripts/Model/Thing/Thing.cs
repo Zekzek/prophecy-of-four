@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UtiliZek;
 
 [Serializable]
 public class Thing
@@ -12,7 +12,7 @@ public class Thing
 
     protected string displayName;
     protected Vector3 position;
-    protected Dictionary<string, Resource> resources;
+    protected Dictionary<string, ThingResource> resources;
     protected List<Stat> stats;
     protected List<PassiveData> passives = new List<PassiveData>();
 
@@ -24,11 +24,11 @@ public class Thing
         id = data.Id;
         displayName = data.DisplayName;
         position = data.Position;
-        resources = Array.ConvertAll(data.Resources, r => new Resource(r)).ToDictionary(r => r.Type);
+        resources = Array.ConvertAll(data.Resources, r => new ThingResource(r)).ToDictionary(r => r.Type);
         stats = Array.ConvertAll(data.Stats, s => new Stat(s)).ToList();
-        passives = Array.ConvertAll(data.Passives, p => Util.GetPassiveData(p)).ToList().FindAll(p => p != null);
+        passives = Array.ConvertAll(data.Passives, p => FileManager.GetPassiveData(p)).ToList().FindAll(p => p != null);
 
-        if (!string.IsNullOrEmpty(data.TemplateId)) template = Util.GetCharacter(data.TemplateId);
+        if (!string.IsNullOrEmpty(data.TemplateId)) template = FileManager.GetCharacter(data.TemplateId);
 
         this.prefab = prefab;
     }
@@ -62,7 +62,7 @@ public class Thing
     {
     }
 
-    public bool Alive { get { return resources.ContainsKey(Resource.HEALTH_ID) && !resources[Resource.HEALTH_ID].Empty; } }
+    public bool Alive { get { return resources.ContainsKey(ThingResource.HEALTH_ID) && !resources[ThingResource.HEALTH_ID].IsEmpty; } }
     public string DisplayName
     {
         get { return (string.IsNullOrEmpty(displayName) && template != null) ? template.DisplayName : displayName; }
@@ -86,7 +86,7 @@ public class Thing
 
     public void AddOrReplacePassive(string passiveId)
     {
-        PassiveData passive = Util.GetPassiveData(passiveId);
+        PassiveData passive = FileManager.GetPassiveData(passiveId);
         passives.RemoveAll(p => p.Type == passive.Type);
         passives.Add(passive);
     }

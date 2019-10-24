@@ -5,8 +5,6 @@ namespace UtiliZek
 {
     public class TimedEventUtil : MonoBehaviour
     {
-        public NoteData[] notes;
-
         public delegate void PlayEvent(float percentComplete, float eventDuration);
         public delegate bool EventReady();
         public static TimedEventUtil Instance { get; private set; }

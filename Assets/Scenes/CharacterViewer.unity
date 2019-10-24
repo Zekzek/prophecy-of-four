@@ -414,12 +414,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1718865763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac404df9a8958a40bffef16508dd81e, type: 3}
+  m_Script: {fileID: 11500000, guid: 163a1a0ccf22a2c469bdd8819d4d4c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2075009552}
   offset: {x: 0, y: 5, z: -15}
-  speed: 10000
+  speed: 1000
 --- !u!54 &1718865768
 Rigidbody:
   m_ObjectHideFlags: 0

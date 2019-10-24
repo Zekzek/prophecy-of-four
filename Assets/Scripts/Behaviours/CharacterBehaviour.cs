@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UtiliZek;
 
 public class CharacterBehaviour : ThingBehaviour
 {

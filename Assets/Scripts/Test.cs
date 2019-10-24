@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Test : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class Test : MonoBehaviour
         {
             for (int y = -1; y <= 1; y++)
             {
-                WorldTile tile = Util.GetWorldTile(x, y);
+                WorldTile tile = FileManager.GetWorldTile(x, y);
                 if (tile != null)
                 {
                     tile.InstantiateGameObject();
@@ -27,7 +25,7 @@ public class Test : MonoBehaviour
         {
             for (int y = -1; y <= 1; y++)
             {
-                WorldTile tile = Util.GetWorldTile(x, y);
+                WorldTile tile = FileManager.GetWorldTile(x, y);
                 if (tile != null)
                 {
                     tile.Tick();

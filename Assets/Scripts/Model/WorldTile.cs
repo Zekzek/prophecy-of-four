@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UtiliZek;
 
 public class WorldTile
 {
@@ -19,8 +20,8 @@ public class WorldTile
     {
         x = data.X;
         y = data.Y;
-        things = Array.ConvertAll(data.ThingIds, id => Util.GetThing(id)).ToList();
-        characters = Array.ConvertAll(data.CharacterIds, id => Util.GetCharacter(id)).ToList();
+        things = Array.ConvertAll(data.ThingIds, id => FileManager.GetThing(id)).ToList();
+        characters = Array.ConvertAll(data.CharacterIds, id => FileManager.GetCharacter(id)).ToList();
     }
 
     public WorldTileData AsWorldTileData()

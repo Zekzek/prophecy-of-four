@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UtiliZek;
 
 public class Character : Thing
 {
@@ -11,10 +12,10 @@ public class Character : Thing
 
     public Character(CharacterData data, GameObject prefab) : base(data, prefab)
     {
-        abilities = Array.ConvertAll(data.Abilities, a => Util.GetAbilityData(a)).ToList().FindAll(a => a != null);
+        abilities = Array.ConvertAll(data.Abilities, a => FileManager.GetAbilityData(a)).ToList().FindAll(a => a != null);
         relationships = data.Relationships.ToList();
 
-        if (!string.IsNullOrEmpty(data.TemplateId)) template = Util.GetCharacter(data.TemplateId);
+        if (!string.IsNullOrEmpty(data.TemplateId)) template = FileManager.GetCharacter(data.TemplateId);
     }
 
     public CharacterData AsCharacterData()
@@ -56,7 +57,7 @@ public class Character : Thing
     {
         string id = relationships.First()?.CharacterId;
         if (!string.IsNullOrEmpty(id))
-            return Util.GetCharacter(id).behaviour.gameObject;
+            return FileManager.GetCharacter(id).behaviour.gameObject;
         return null;
     }
 
